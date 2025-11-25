@@ -7,43 +7,44 @@ const menuItems = [
     desc: 'Solicite algum serviço',
     icon: 'addchart',
   },
-   {
+  {
+    name: 'Solicitações',
+    desc: 'Solicite algum serviço',
+    icon: 'assignment',
+  },
+  {
     name: 'Status',
     desc: 'Acompanhe a sua solicitação',
-    icon: 'status',
+    icon: 'checklist',
   },
-   {
+
+  {
     name: 'Ouvidoria',
     desc: 'Fale com um suporte',
     icon: 'headset',
   },
-   {
+  {
     name: 'Sugestões',
     desc: 'Deixe alguma sugestão',
     icon: 'addchart',
   },
-   {
+  {
     name: 'Perfil',
     desc: 'Visualize ou edite seu perfil',
-    icon: 'addchart',
+    icon: 'person',
   },
-   {
+  {
     name: 'Site Oficial',
     desc: 'Clique para acessar  <br/>nsite oficial PMVC',
-    icon: 'addchart',
+    icon: 'mouse',
   },
-   {
-    name: 'Faça uma solicitação',
-    desc: 'Solicite algum serviço',
-    icon: 'addchart',
+  {
+    name: 'Dashboard',
+    desc: 'Acompanhar progresso <br/> das solicitações',
+    icon: 'dashboard',
   },
-   {
-    name: 'Faça uma solicitação',
-    desc: 'Solicite algum serviço',
-    icon: 'addchart',
-  },
-    {
-    name: 'Faça uma solicitação',
+  {
+    name: 'Funcionários',
     desc: 'Solicite algum serviço',
     icon: 'addchart',
   },
@@ -60,15 +61,15 @@ const menuItems = [
       </div>
     </div>
     <div class="home-box">
-    <q-card v-for="item in menuItems" :key="item.name" clickable id="card">
-      <q-card-section class="flex items-center q-gutter-md">
-        <div class="icons-link"><q-icon :name="item.icon" size="30px" /></div>
-        <div class="column">
-          <span class="text-h6" v-html="item.name"></span>
-          <span class="text-caption text-grey-6" v-html="item.desc"></span>
-        </div>
-      </q-card-section>
-    </q-card>
+      <q-card v-for="item in menuItems" :key="item.name" clickable id="card">
+        <q-card-section class="flex items-center q-gutter-md">
+          <div class="icons-link"><q-icon :name="item.icon" size="30px" id="icon" /></div>
+          <div class="column">
+            <span class="text-h6" v-html="item.name"></span>
+            <span class="text-caption text-grey-6" v-html="item.desc"></span>
+          </div>
+        </q-card-section>
+      </q-card>
     </div>
   </div>
 </template>
@@ -84,7 +85,6 @@ const menuItems = [
   justify-content: flex-start;
   height: 100vh;
   width: 100%;
-
 }
 .home-box {
   display: flex;
@@ -95,19 +95,29 @@ const menuItems = [
   justify-content: center;
   background-color: white;
   border-radius: 20px;
-  height: 550px;
-  width: 1210px;
+  height: 500px;
+  width: 1140px;
   padding: 20px;
 }
 
-#card{
-
+#card {
   border-radius: 16px;
-  transition: 0.3s ease;
+  transition: 0.4s ease;
   width: 350px;
+  box-shadow: none;
+  border: 1px solid rgb(230, 230, 230);
 }
-#card:hover{
-  background-color: aliceblue;
+#card:hover {
+  box-shadow: 2px 2px 14px 0px rgb(216, 216, 216);
+  cursor: pointer;
+}
+
+#icon{
+  scale: 1;
+  transition: 0.4s ease-in-out;
+}
+#card:hover #icon{
+  scale: 1.2;
 }
 .content-wrapper {
   display: flex;

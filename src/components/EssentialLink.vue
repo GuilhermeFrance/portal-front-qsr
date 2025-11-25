@@ -1,6 +1,6 @@
 <template>
   <RouterLink :to="link" class="router">
-    <q-item-section v-if="icon" avatar>
+    <q-item-section v-if="icon" avatar id="icon">
       <q-icon :name="icon" />
     </q-item-section>
 
@@ -33,15 +33,24 @@ withDefaults(defineProps<EssentialLinkProps>(), {
 .router{
   text-decoration: none;
   display: flex;
+  justify-content: center;
   height: 45px;
   color: black;
   padding: 4px;
   transition: 0.3s ease;
 }
-
 .router:hover{
   background-color: rgb(240, 240, 240);
   color: darkblue;
 }
+.router.router-link-exact-active{
+  color: rgb(0, 89, 255);
+}
 
+#icon{
+  display: flex;
+  justify-content: center;
+  margin: 0;
+  padding-left: 14px;
+}
 </style>

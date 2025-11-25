@@ -1,12 +1,10 @@
 <template>
-  <q-page class="row items-center justify-evenly">
-    <div class="home-card ">
-
-    </div>
-  </q-page>
+<RequestComponent/>
 </template>
 
 <script setup lang="ts">
+import RequestComponent from 'src/components/RequestComponent.vue';
+
 
 
 </script>
