@@ -1,3 +1,4 @@
+import LoginPage from 'src/pages/LoginPage.vue';
 import type { RouteRecordRaw } from 'vue-router';
 
 const routes: RouteRecordRaw[] = [
@@ -8,8 +9,14 @@ const routes: RouteRecordRaw[] = [
       { path: '', component: () => import('pages/IndexPage.vue') },
       { path: 'inicio', component: () => import('src/pages/HomePage.vue') },
       { path: 'solicitacoes', component: () => import('src/pages/RequestsPage.vue') },
+      {
+    path: '/login',
+    component: LoginPage,
+    name: 'Login'
+  },
     ],
   },
+
 
   // Always leave this as last one,
   // but you can also remove it

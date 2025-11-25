@@ -33,22 +33,45 @@ watch([search], () => {
 });
 
 const columns = [
-  { name: 'id', align: 'center' as const, label: 'ID', field: 'id', sortable: true },
-  { name: 'name', align: 'left' as const, label: 'Nome', field: 'name', sortable: true },
+  {
+    name: 'id',
+    align: 'center' as const,
+    label: 'ID',
+    field: 'id',
+    sortable: true,
+    headerStyle: 'font-weight: bold; font-size: 15px',
+  },
+  {
+    name: 'name',
+    align: 'left' as const,
+    label: 'Nome',
+    field: 'name',
+    sortable: true,
+    headerStyle: 'font-weight: bold; font-size: 15px',
+  },
   {
     name: 'description',
     align: 'left' as const,
     label: 'Descrição',
     field: 'description',
     sortable: true,
+    headerStyle: 'font-weight: bold; font-size: 15px  ',
   },
-  { name: 'adress', align: 'left' as const, label: 'Endereço', field: 'adress', sortable: true },
+  {
+    name: 'adress',
+    align: 'left' as const,
+    label: 'Endereço',
+    field: 'adress',
+    sortable: true,
+    headerStyle: 'font-weight: bold; font-size: 15px  ',
+  },
   {
     name: 'status',
     align: 'left' as const,
     label: 'STATUS',
     field: (row: RequestRow) => row.status?.name,
     sortable: true,
+    headerStyle: 'font-weight: bold; font-size: 15px  ',
   },
   {
     name: 'type',
@@ -56,6 +79,7 @@ const columns = [
     label: 'Serviço',
     field: (row: RequestRow) => row.type?.name,
     sortable: true,
+    headerStyle: 'font-weight: bold; font-size: 15px  ',
   },
   {
     name: 'createdAt',
@@ -63,6 +87,7 @@ const columns = [
     label: 'Data',
     field: (row: RequestRow) => formatTime(row.createdAt),
     sortable: true,
+    headerStyle: 'font-weight: bold; font-size: 15px  ',
   },
 ];
 
@@ -74,7 +99,7 @@ const requests = ref<RequestRow[]>([]);
 
 async function getRequests() {
   try {
-    const { data } = await api.get('http://localhost:3000/requests/all', {
+    const { data } = await api.get(   'requests/all' ,{
       params: {
         filter: search.value,
       },
@@ -93,7 +118,7 @@ async function getRequests() {
     <div class="q-pa-md" id="main">
       <div class="content">
         <div style="display: flex; justify-content: space-between; padding-bottom: 10px">
-          <span style="font-size: 20px; font-weight: 700;">Solicitações</span>
+          <span style="font-size: 20px; font-weight: 700">Solicitações</span>
           <div class="tbl-features">
             <q-input filled v-model="search" dense placeholder="Filtro..." bg-color="white"
               ><template v-slot:prepend> <q-icon name="search" /></template>
@@ -114,12 +139,13 @@ async function getRequests() {
         </div>
 
         <q-table
-          style="height: 400px; width: 1400px; border-radius: 20px"
+          style="height: 400px; width: 940px; border-radius: 10px"
           flat
           bordered
           :rows="requests"
           :columns="columns"
           row-key="id"
+          table-class="custom-table"
         />
       </div>
     </div>
@@ -128,6 +154,12 @@ async function getRequests() {
 
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+
+:deep(.custom-table tbody tr) {
+  font-size: 10px;
+  color: rgb(70, 70, 70);
+  height: 30px;
+}
 
 #main {
   display: flex;
