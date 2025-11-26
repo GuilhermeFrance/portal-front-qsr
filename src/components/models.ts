@@ -41,3 +41,20 @@ export interface ClientModel {
   profileUrl?: string;
   profileImageId?: number;
 }
+
+export interface User {
+  id: number;
+  publicId: number;
+  email: string;
+  name: string;
+  cpf: string;
+  role: Role | null;
+  roleId: number | null
+  createdAt: Date
+  updatedAt: Date
+}
+
+export interface Role {
+  id: number;
+  name: string;
+}

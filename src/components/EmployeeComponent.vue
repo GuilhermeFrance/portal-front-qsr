@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { onMounted, ref, watch } from 'vue';
-import type { RequestRow } from './models';
+import type { User } from './models';
 import { api } from 'boot/axios';
 import { debounce } from 'quasar';
 
@@ -25,8 +25,8 @@ function formatTime(dateTimeString: string | Date | undefined): string {
 }
 
 const debouncedFetch = debounce(async () => {
-  await getRequests();
-}, 450);
+  await getusers();
+}, 100);
 
 watch([search], () => {
   debouncedFetch();
@@ -50,34 +50,18 @@ const columns = [
     headerStyle: 'font-weight: bold; font-size: 15px',
   },
   {
-    name: 'description',
+    name: 'cpf',
     align: 'left' as const,
-    label: 'Descrição',
-    field: 'description',
+    label: 'CPF',
+    field: 'cpf',
     sortable: true,
     headerStyle: 'font-weight: bold; font-size: 15px  ',
   },
   {
-    name: 'adress',
+    name: 'cargo',
     align: 'left' as const,
-    label: 'Endereço',
-    field: 'adress',
-    sortable: true,
-    headerStyle: 'font-weight: bold; font-size: 15px  ',
-  },
-  {
-    name: 'status',
-    align: 'left' as const,
-    label: 'STATUS',
-    field: (row: RequestRow) => row.status?.name,
-    sortable: true,
-    headerStyle: 'font-weight: bold; font-size: 15px  ',
-  },
-  {
-    name: 'type',
-    align: 'left' as const,
-    label: 'Serviço',
-    field: (row: RequestRow) => row.type?.name,
+    label: 'Cargo',
+    field: (row:User) => row.role?.name,
     sortable: true,
     headerStyle: 'font-weight: bold; font-size: 15px  ',
   },
@@ -85,36 +69,36 @@ const columns = [
     name: 'createdAt',
     align: 'left' as const,
     label: 'Data',
-    field: (row: RequestRow) => formatTime(row.createdAt),
+    field: (row: User) => formatTime(row.createdAt),
     sortable: true,
     headerStyle: 'font-weight: bold; font-size: 15px  ',
   },
 ];
 
 onMounted(async () => {
-  await getRequests();
+  await getusers();
 });
 
-const requests = ref<RequestRow[]>([]);
+const users = ref<User[]>([]);
 
-async function getRequests() {
+async function getusers() {
   try {
-    const { data } = await api.get(   'requests/all' ,{
+    const response = await api.get(   'users' ,{
       params: {
         filter: search.value,
       },
     });
 
-    requests.value = data.data;
+    users.value = response.data.data;
   } catch (error) {
     console.log(error);
-    requests.value = [];
+    users.value = [];
   }
 }
 </script>
 
 <template>
-  
+
     <div class="q-pa-md" id="main">
       <div class="content">
         <div style="display: flex; justify-content: space-between; padding-bottom: 10px">
@@ -127,7 +111,7 @@ async function getRequests() {
               @click="
                 () => {
                   search = '';
-                  getRequests();
+                  getusers();
                 }
               "
               color="blue-14"
@@ -142,7 +126,7 @@ async function getRequests() {
           style="height: 400px; width: 940px; border-radius: 10px"
           flat
           bordered
-          :rows="requests"
+          :rows="users"
           :columns="columns"
           row-key="id"
           table-class="custom-table"

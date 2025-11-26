@@ -12,12 +12,13 @@
     </q-header> -->
 
       <q-drawer
+        v-if="showSideBar"
         v-model="leftDrawerOpen"
         bordered
         :mini="miniState"
         :width="300"
         persistent
-        :class="$q.dark.isActive ? 'bg-grey-9' : 'bg-grey-3'"
+        :class=" 'bg-white' "
       >
         <q-list>
           <q-item
@@ -48,15 +49,24 @@ import EssentialLink, { type EssentialLinkProps } from 'components/EssentialLink
 import { useRoute } from 'vue-router';
 
 
-const PagesNoBackground = ['Login']
+const PagesNoBackground = ['Login', 'Register']
+const PagesNoSideBar = ['Login', 'Register']
 const route = useRoute();
+
+const showSideBar = computed(() => {
+  const currentRouteName = (route.name ?? '') as string;
+  return !PagesNoSideBar.includes(currentRouteName)
+});
+
 
 const showBackground = computed(() => {
   const currentRouteName = (route.name ?? '') as string;
   return !PagesNoBackground.includes(currentRouteName)
 });
 
-const miniState = ref(true);
+
+
+const miniState = ref(false);
 
 const linksList: EssentialLinkProps[] = [
   {
@@ -71,11 +81,18 @@ const linksList: EssentialLinkProps[] = [
     icon: 'book',
     link: '/solicitacoes',
   },
+
   {
+    title: 'Funcionários',
+    caption: 'Veja todos os funcionários',
+    icon: 'groups',
+    link: '/funcionarios',
+  },
+    {
     title: 'Faça uma solicitação',
     caption: 'Solicite algum serviço',
     icon: 'addchart',
-    link: '/formulario-solicitacao',
+    link: '/solicite',
   },
 ];
 
@@ -89,6 +106,7 @@ function toggleLeftDrawer() {
 <style scoped>
 main{
   min-height: 100vh;
+  width: 100vh;
   margin: 0;
   padding: 0;
 }
@@ -96,7 +114,7 @@ main{
   color: rgb(0, 0, 0);
 }
 #menu-active {
-  color: rgb(0, 89, 255);
+  color: rgb(89, 0, 255);
 }
 
 .has-background {

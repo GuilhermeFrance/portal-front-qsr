@@ -6,7 +6,7 @@
 
     <q-item-section>
       <q-item-label>{{ title }}</q-item-label>
-      <q-item-label caption>{{ caption }}</q-item-label>
+
     </q-item-section>
   </RouterLink>
 </template>
@@ -38,13 +38,20 @@ withDefaults(defineProps<EssentialLinkProps>(), {
   color: black;
   padding: 4px;
   transition: 0.3s ease;
+  font-weight: 500;
 }
 .router:hover{
-  background-color: rgb(240, 240, 240);
-  color: darkblue;
+  background-color: rgb(243, 243, 243);
+  color: rgb(0, 0, 0);
 }
 .router.router-link-exact-active{
-  color: rgb(0, 89, 255);
+  color: rgb(255, 255, 255);
+  background-color: rgb(48, 11, 211);
+  font-weight: 600;
+}
+.router.router-link-exact-active q-item-section{
+  color: rgb(255, 255, 255);
+  background-color: black;
 }
 
 #icon{

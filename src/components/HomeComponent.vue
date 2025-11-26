@@ -65,8 +65,8 @@ const menuItems = [
         <q-card-section class="flex items-center q-gutter-md">
           <div class="icons-link"><q-icon :name="item.icon" size="30px" id="icon" /></div>
           <div class="column">
-            <span class="text-h6" v-html="item.name"></span>
-            <span class="text-caption text-grey-6" v-html="item.desc"></span>
+            <span class="text-h6" id="card-title" v-html="item.name"></span>
+            <span class="text-body2 text-grey-6" v-html="item.desc"></span>
           </div>
         </q-card-section>
       </q-card>
@@ -83,6 +83,7 @@ const menuItems = [
   align-items: center;
   align-content: center;
   justify-content: flex-start;
+
   height: 100vh;
   width: 100%;
 }
@@ -96,16 +97,21 @@ const menuItems = [
   background-color: white;
   border-radius: 20px;
   height: 500px;
-  width: 1140px;
+  width: 1160px;
   padding: 20px;
+}
+
+#card-title{
+   font-family: 'Inter', sans-serif;
 }
 
 #card {
   border-radius: 16px;
   transition: 0.4s ease;
-  width: 350px;
+  width: 360px;
   box-shadow: none;
-  border: 1px solid rgb(230, 230, 230);
+  border: 1px solid rgb(240, 240, 240);
+
 }
 #card:hover {
   box-shadow: 2px 2px 14px 0px rgb(216, 216, 216);
