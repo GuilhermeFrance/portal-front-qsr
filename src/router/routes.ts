@@ -13,6 +13,7 @@ const routes: RouteRecordRaw[] = [
       { path: 'solicitacoes', component: () => import('src/pages/RequestsPage.vue') },
       { path: 'funcionarios', component: () => import('src/pages/EmployeePage.vue') },
       { path: 'solicite', component: () => import('src/pages/FormPage.vue'), name: 'Form' },
+      { path: 'perfil', component: () => import('src/pages/ProfilePage.vue'), name: 'Profile' },
       {
         path: '/login',
         component: LoginPage,

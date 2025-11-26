@@ -20,6 +20,7 @@
         persistent
         :class=" 'bg-white' "
       >
+      <div class="column fit justify-between" style="height: 100%;">
         <q-list>
           <q-item
             clickable
@@ -34,6 +35,24 @@
             <EssentialLink v-for="link in linksList" :key="link.title" v-bind="link" />
           </div>
         </q-list>
+        <div class="">
+      <q-item clickable to="/perfil">
+        <q-item-section avatar>
+
+        </q-item-section>
+
+        <q-item-section class="q-pl-sm" v-show="!miniState">
+          <q-item-label>Guilherme</q-item-label>
+          <q-item-label caption>Ver perfil</q-item-label>
+        </q-item-section>
+
+        <!-- quando estiver mini, mostra só o avatar -->
+        <q-item-section v-show="miniState">
+          <!-- nada extra — o avatar já aparece -->
+        </q-item-section>
+      </q-item>
+    </div>
+    </div>
       </q-drawer>
 
       <q-page-container>

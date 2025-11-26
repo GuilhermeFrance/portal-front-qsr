@@ -6,47 +6,56 @@ const menuItems = [
     name: 'Faça uma solicitação',
     desc: 'Solicite algum serviço',
     icon: 'addchart',
+    route: '/solicite'
   },
   {
     name: 'Solicitações',
     desc: 'Solicite algum serviço',
     icon: 'assignment',
+    route: '/solicitacoes'
   },
   {
     name: 'Status',
     desc: 'Acompanhe a sua solicitação',
     icon: 'checklist',
+    route: '/solicitacoes'
   },
 
   {
     name: 'Ouvidoria',
     desc: 'Fale com um suporte',
     icon: 'headset',
+    route: '/solicite'
   },
   {
     name: 'Sugestões',
     desc: 'Deixe alguma sugestão',
     icon: 'addchart',
+    route: '/solicite'
   },
   {
     name: 'Perfil',
     desc: 'Visualize ou edite seu perfil',
     icon: 'person',
+    route: '/perfil'
   },
   {
     name: 'Site Oficial',
     desc: 'Clique para acessar  <br/>nsite oficial PMVC',
     icon: 'mouse',
+    route: '/solicite'
   },
   {
     name: 'Dashboard',
     desc: 'Acompanhar progresso <br/> das solicitações',
     icon: 'dashboard',
+    route: '/solicite'
   },
   {
     name: 'Funcionários',
     desc: 'Solicite algum serviço',
     icon: 'addchart',
+    route: '/funcionarios'
   },
 ];
 </script>
@@ -62,6 +71,7 @@ const menuItems = [
     </div>
     <div class="home-box">
       <q-card v-for="item in menuItems" :key="item.name" clickable id="card">
+        <RouterLink style="text-decoration: none; color: black;" :to="item.route!">
         <q-card-section class="flex items-center q-gutter-md">
           <div class="icons-link"><q-icon :name="item.icon" size="30px" id="icon" /></div>
           <div class="column">
@@ -69,6 +79,7 @@ const menuItems = [
             <span class="text-body2 text-grey-6" v-html="item.desc"></span>
           </div>
         </q-card-section>
+        </RouterLink>
       </q-card>
     </div>
   </div>

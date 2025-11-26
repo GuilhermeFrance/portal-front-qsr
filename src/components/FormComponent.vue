@@ -1,10 +1,20 @@
 <script setup lang="ts">
-const newform = {
+import { ref } from 'vue';
+const types = [
+  {name: 'Buracos', key: 'buracos'},
+  {name: 'Iluminação', key: 'iluminacao'},
+  {name: 'Limpeza', key: 'limpeza'},
+  {name: 'Fiscalização', key: 'fiscalizacao'}
+
+]
+const newform = ref({
   name: '',
   desc: '',
   type: [],
   adress: '',
-};
+});
+
+
 </script>
 
 <template>
@@ -13,28 +23,42 @@ const newform = {
       <span class="text-h6">Faça sua solicitação:</span>
       <form action="">
         <div>
-          <q-input style="width: 740px" outlined dense label="Nome" v-model="newform.name" :rules="(val) => val && (val.length > 0) | 'Preencha este campo'"
+          <q-input style="width: 740px" outlined dense label="Nome" v-model="newform.name"
+          :rules="
+          [(val) => val && (val.length > 0) || 'Preencha este campo',
+           (val) => val && (val.length > 8) || 'Insira um nome válido']"
             ><template v-slot:append>
               <q-icon name="close" @click="newform.name = ''" class="cursor-pointer" /> </template
           ></q-input>
         </div>
         <div>
-          <q-input style="width: 740px" outlined dense label="Endereço" v-model="newform.name">
+          <q-input style="width: 740px" outlined dense label="Endereço" v-model="newform.adress"
+          :rules="
+          [(val) => val && (val.length > 0) || 'Preencha este campo',
+           (val) => val && (val.length > 14) || 'Insira um endereço válido']">
             <template v-slot:append>
-              <q-icon name="close" @click="newform.name = ''" class="cursor-pointer" /> </template
+              <q-icon name="close" @click="newform.adress = ''" class="cursor-pointer" /> </template
           ></q-input>
         </div>
         <div>
-          <q-input
-            style="width: 740px"
-            outlined
-            dense
-            clearable
-            placeholder="Contexto da solicitação"
-            v-model="newform.name"
-            ><template v-slot:append>
-              <q-icon name="close" @click="newform.name = ''" class="cursor-pointer" /> </template
-          ></q-input>
+          <q-select
+           v-model="newform.type"
+           style="width: 740px;"
+           outlined
+           dense
+           label="Serviço"
+           :options="types"
+           emit-value
+           map-options
+           option-label="name"
+           option-value="key"
+           :rules="[
+            (val) => val && (val.length > 0) || 'Preencha este campo'
+           ]"
+
+           >
+
+          </q-select>
         </div>
         <div>
           <q-input
@@ -46,7 +70,7 @@ const newform = {
             :rows="6"
             clearable
             ><template v-slot:append>
-              <q-icon name="close" @click="newform.name = ''" class="cursor-pointer" /> </template
+              <q-icon name="close" @click="newform.desc = ''" class="cursor-pointer" /> </template
           ></q-input>
         </div>
         <q-btn color="indigo-12" style="width: 150px"> ENVIAR </q-btn>
@@ -65,7 +89,7 @@ const newform = {
 form {
   display: flex;
   flex-direction: column;
-  gap: 30px;
+  gap: 10px;
   align-items: flex-end;
 }
 
