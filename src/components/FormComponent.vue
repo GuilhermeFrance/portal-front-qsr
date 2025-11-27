@@ -28,7 +28,7 @@ const newform = ref({
           [(val) => val && (val.length > 0) || 'Preencha este campo',
            (val) => val && (val.length > 8) || 'Insira um nome válido']"
             ><template v-slot:append>
-              <q-icon name="close" @click="newform.name = ''" class="cursor-pointer" /> </template
+              <q-icon  name="close" @click="newform.name = ''" class="cursor-pointer" /> </template
           ></q-input>
         </div>
         <div>
@@ -69,11 +69,14 @@ const newform = ref({
             type="textarea"
             :rows="6"
             clearable
+             :rules="[
+            (val) => val && (val.length > 0) || 'Preencha este campo'
+           ]"
             ><template v-slot:append>
               <q-icon name="close" @click="newform.desc = ''" class="cursor-pointer" /> </template
           ></q-input>
         </div>
-        <q-btn color="indigo-12" style="width: 150px"> ENVIAR </q-btn>
+        <q-btn type="submit" color="indigo-12" style="width: 150px"> ENVIAR </q-btn>
       </form>
     </div>
   </section>

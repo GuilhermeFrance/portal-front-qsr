@@ -304,7 +304,7 @@ section {
   flex-direction: row;
   gap: 18px;
   align-items: self-end;
-  border: 1px solid rgba(215, 215, 215, 0.527);
+  border: 1px solid rgba(215, 215, 215, 0.096);
   border-radius: 10px;
 }
 .lucide-icon {

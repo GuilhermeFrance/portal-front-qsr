@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { CalendarFold, Mail, UserRound } from 'lucide-vue-next';
+
 const menuItems = [
   {
     name: 'Status',
@@ -29,9 +31,9 @@ const menuItems = [
         <div class="headerInfos">
           <div class="imgLayout"></div>
           <div class="currentInfos">
-            <span class="currentInfo">Name</span>
-            <span class="currentInfo">Email</span>
-            <span class="currentInfo">25/12/22</span>
+            <span class="currentInfo"> <UserRound class="lucide-icon"/> Guilherme France de Oliveira Santos</span>
+            <span class="currentInfo"> <Mail class="lucide-icon"/>guilhermefrance9@gmail.com</span>
+            <span class="currentInfo"> <CalendarFold class="lucide-icon"/> 25/12/22</span>
           </div>
         </div>
         <q-btn
@@ -74,11 +76,11 @@ const menuItems = [
         </div>
 
         <div class="right-side">
-          <div>
+          <div class="links">
             <q-card v-for="item in menuItems" :key="item.name" clickable id="card">
               <RouterLink style="text-decoration: none; color: black" :to="item.route!">
                 <q-card-section class="flex items-center q-gutter-md">
-                  <div class="icons-link"><q-icon :name="item.icon" size="30px" id="icon" /></div>
+                  <div class="icons-link"><q-icon :name="item.icon" size="24px" id="icon" /></div>
                   <div class="column">
                     <span class="text-h6" id="card-title" v-html="item.name"></span>
                     <span class="text-body2 text-grey-6" v-html="item.desc"></span>
@@ -106,11 +108,17 @@ section {
 #card-title {
   font-family: 'Inter', sans-serif;
 }
+.links{
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  gap: 10px;
+}
 
 #card {
   border-radius: 16px;
   transition: 0.4s ease;
-  width: 360px;
+  width: 430px;
   box-shadow: none;
   border: 1px solid rgb(240, 240, 240);
 }
@@ -151,8 +159,8 @@ section {
   align-items: center;
   align-content: center;
   background: linear-gradient(rgb(0, 162, 255), blue);
-  width: 100px;
-  height: 100px;
+  width: 70px;
+  height: 70px;
   border-radius: 10px;
   color: white;
 }
@@ -189,7 +197,10 @@ section {
   width: 100%;
   border-radius: 20px;
 }
-
+.lucide-icon{
+  width: 30px;
+  height: 18px;
+}
 .left-side {
   display: flex;
   align-items: center;
@@ -232,12 +243,14 @@ section {
 }
 
 .currentInfo {
+  display: flex;
+  align-items: center;
   font-size: 16px;
   font-weight: 300;
 }
 
 .DivName {
-  background-color: rgb(240, 240, 240);
+  background-color: rgba(240, 240, 240, 0.493);
   border-radius: 10px;
   padding-left: 10px;
   height: 40px;
@@ -248,6 +261,7 @@ section {
 }
 
 .infoText {
+  font-size: 15px;
   font-weight: 300;
 }
 </style>
